@@ -1,8 +1,8 @@
-# Your Name Here
+# Eleanor Kaufman
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# 11/20/24
+# Lab 10
+# Lab Section: 15
 # Sources, people worked with, help given to: 
 # your
 # comments
@@ -33,13 +33,27 @@ def get_hash(to_hash):
 # You will need to include a try-except-catch block in your code.
 # - The reading of files needs to occur in the try blocks.
 
-
 # - Read in the value stored within `hash`.
 #   - You must use a try and except block.
-
-
+try:
+    with open('hash', 'r') as file:
+        hash_value = file.read().strip()
+except Exception as e:
+    print('Error:', e)
 # Read in the passwords in `rockyou.txt`.
 # - Again, you need a try-except-else block.
+try:
+    with open('rockyou.txt', 'r') as file:
+        passwords = file.readlines()
+except Exception as e:
+    print('Error:', e)
 # Hash each individual password and compare it against the stored hash.
 # - When you find the match, print the plaintext version of the password.
 # - End your loop.
+for password in passwords:
+    password = password.strip()
+    if get_hash(password) == hash_value:
+        print('Password:', password)
+        break
+    else:
+        print('No matching password found.')
